@@ -1,0 +1,39 @@
+<form [formGroup]="formVenta">
+    <ng-container formArrayName="infoVentaVendedor">
+        <h1>Venta Vendedor</h1>
+        <div *ngFor="let ivv of GetInfoVentaVendedor.controls; index as i ">
+            <ng-container [formGroupName]="i">
+                <select formControlName="persona" class="form-control">
+                    <option [ngValue]="null" disabled>Seleccione una opción</option>
+                    <option *ngFor="let item of personas" [ngValue]="item.idPersona" id="persona">
+                      {{ item.nombre }}
+                    </option>
+                </select>
+                <input type="number" formControlName="porcentaje">
+            </ng-container> <br>
+            <button type="button" (click)="eliminarVendedor(i)">Eliminar</button>
+        </div>
+    </ng-container>
+
+    <ng-container formArrayName="infoventaComision">
+        <h1>Venta Comision</h1>
+        <div *ngFor="let ivc of GetInfoVentaComision.controls; index as i ">
+            <ng-container [formGroupName]="i">
+                <select formControlName="persona" class="form-control">
+                    <option [ngValue]="null" disabled>Seleccione una opción</option>
+                    <option *ngFor="let item of personas" [ngValue]="item.idPersona" id="persona">
+                      {{ item.nombre }}
+                    </option>
+                </select>
+                <input type="number" formControlName="porcentaje">
+            </ng-container><br>
+            <button type="button" (click)="eliminarComision(i)">Eliminar</button>
+        </div>
+    </ng-container>
+</form>
+<br>
+<button type="button" (click)="agregarVendedor()">Agregar formGroup Vendedor</button>
+<button type="button" (click)="agregarComision()">Agregar formGroup Comision</button>
+<pre>
+    {{formVenta.value | json}}
+</pre>
